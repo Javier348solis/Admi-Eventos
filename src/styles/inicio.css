@@ -1,0 +1,44 @@
+.login-email{
+
+}
+
+.login-contra{
+
+}
+
+.btn-sesion{
+   width: 100px;
+   height: 35px;
+   background-color: rgb(0, 255, 255, 0.5);
+   
+   box-shadow: red 0px 10px 10px, red 0px -2px 7px, red 0px 4px 6px, red 0px 6px 6px, red 0px -1px 2px;
+
+}
+
+.main-backGround{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid white;
+    width: 400px;
+    height: 250px;
+    margin-left: 520px;
+    color: red;
+    background-color: rgb(192, 192, 192, 0.6);
+}
+
+.main-backGround input{
+    padding: 5px;
+    width: 300px;
+    margin-bottom: 5px;
+    display: flex;
+    margin-top: 15px;
+    border: 2px solid red;
+    background-color: transparent;
+}
+
+body{
+    background-image: url(/src/images/ceiling-8802142_1920.jpg);
+}

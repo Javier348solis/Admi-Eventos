@@ -1,0 +1,31 @@
+body{
+    background-image: url(/src/images/calendar-1021194_1280.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.contenedor-registro{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid black;
+    width: 400px;
+    height: 250px;
+    margin-left: 520px;
+    color: red;
+    background-color: silver;
+}
+.btn-register{
+    width: 200px;
+    
+}
+.contenedor-registro input{   
+    padding: 5px;
+    width: 300px;
+    margin-bottom: 5px;
+    display: flex;
+    margin-top: 15px;
+}
