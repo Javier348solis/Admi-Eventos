@@ -20,4 +20,4 @@ boton.addEventListener("click", function (e){
                 localStorage.setItem("usuarioRegistro", JSON.stringify(usuarioRegistro))
             }   
         }
-)
+) 

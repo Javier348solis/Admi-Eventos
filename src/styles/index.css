@@ -1,0 +1,71 @@
+body{
+    background-color: #7d7a7a;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+.btn-menu{
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    color: #fff;
+}
+.btn-menu:hover{
+    background: white;
+}
+.descripcion{
+    padding: 0 30px;
+}
+nav{
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.menu{
+    position: absolute;
+    background: #ffff;
+    top: 60px;
+    right: 10px;
+    display: none;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 250px;
+    height: 400px;
+    padding: 20px;
+}
+.menu-active{
+    display: flex;
+}
+.menu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu ul li{
+    padding: 10px;
+    cursor: pointer;
+}
+.menu ul li a{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.menu ul li i{
+    font-size: 0.9em;
+    color: #6459dd;
+}
+.menu li:hover{
+    color: #6459dd;
+}
+.menu li:hover a{
+    color: #6459dd;
+}
