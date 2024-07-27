@@ -1,7 +1,30 @@
+//Las primeras dos lineas son variables que se llaman directamente de html mediante un ID para darle funcion al NavBar
 const boton = document.getElementById("btn-menu")
 const menu = document.getElementById("menu")
+//Constantes definidas desde el html con ID para darle funcion a los inputs que agregaran las tareas
+const agregar = document.getElementById("espaciosTareas1")
+const fecha = document.getElementById("espaciosTareas2")
+const hora = document.getElementById("espaciosTareas3")
+const botoncito = document.getElementById("botonAgregar")
 let isOpen =false;
 
+let agregarTareas = JSON.parse(localStorage.getItem("agregarTareas")) || []
+
+botoncito.addEventListener("click", ()=>{
+    if (agregar.value ==="" || fecha.value === "" || hora.value === "") {
+        alert("No se pueden agregar tareas o eventos vacios")
+    }else{
+        alert("Se agrego satisfactoriamente")
+    }
+})
+let espaciosTareas = {
+    agregar: agregar.value,
+    fecha: fecha.value,
+    hora: hora.value,
+}
+
+
+//Funcion que se le dio al boton del navbar, si esta abierto, se mantiene verdadero, si esta cerrado, falso.
 boton.addEventListener("click", ()=> {
     if(isOpen) {
         menu.classList.remove("menu-active");
@@ -11,3 +34,4 @@ boton.addEventListener("click", ()=> {
         isOpen =true
     }
 })
+ 
