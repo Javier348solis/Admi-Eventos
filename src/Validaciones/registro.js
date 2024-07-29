@@ -24,6 +24,7 @@ boton.addEventListener("click", function (e){
             }else{
                 usuarioRegistro.push(usuario)
                 localStorage.setItem("usuarioRegistro", JSON.stringify(usuarioRegistro))
+                alert("Usuario registrado con exito ")
                 window.location.href='Inicio.html'
             }   
         }
