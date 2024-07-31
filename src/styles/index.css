@@ -86,10 +86,25 @@ input{
     margin-top: 5px;
     margin-bottom: 10px;
     border: 3px solid black;
-}
-select{
-    
-}
+} 
 .linea-espacio{
     border: solid 2px white;
+}
+.boton-editar{
+    height: 30px;
+    width: 30px;
+    background-color: green;
+    padding: 10px;
+    margin-left: 30px;
+}
+.boton-eliminar{
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    padding: 10px;
+}
+.lista{
+    border: 2px solid yellowgreen;
+    padding: 30px;
+    margin-bottom: 10px;
 }

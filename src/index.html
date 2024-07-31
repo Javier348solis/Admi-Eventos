@@ -3,48 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pixa Events</title>
     <link rel="stylesheet" href="/src/styles/index.css">
 </head>
 <body>
-          <nav>
-            <img src="" alt="" class="logo">
-            <button class="btn-menu" id="btn-menu">
-                <i class="bi-bi-lista"> </i>
-            </button>
-          </nav>
-        <div class="menu" id="menu">
-            <ul>
-                <li>
-                    <a href="contacto.html"><i class="bi-bi-contacto"></i>Contacto</a>
-                    <p class="descripcion">Consultas de pagina</p>
-                </li>
-                <li>
-                    <a href="acercade.html"><i class="bi-bi-acercaDe"></i>Acerca de Nosotros</a>
-                    <p class="descripcion">Resumen de la pagina</p>
-                </li>
-                <li> 
-                    <a href="planes.html"><i class="bi-bi-plans"></i>Paquetes</a>
-                    <p class="descripcion">Planes de Pixa Events</p>
-                </li>
-            </ul>
-        </div>
-        <h1 class="titulo-principal">Pixa Events</h1>
+    <nav>
+        <img src="" alt="" class="logo">
+        <button class="btn-menu" id="btn-menu">
+            <i class="bi-bi-lista"></i>
+        </button>
+    </nav>
+    <div class="menu" id="menu">
+        <ul>
+            <li>
+                <a href="contacto.html"><i class="bi-bi-contacto"></i>Contacto</a>
+                <p class="descripcion">Consultas de página</p>
+            </li>
+            <li>
+                <a href="acercade.html"><i class="bi-bi-acercaDe"></i>Acerca de Nosotros</a>
+                <p class="descripcion">Resumen de la página</p>
+            </li>
+            <li>
+                <a href="planes.html"><i class="bi-bi-plans"></i>Paquetes</a>
+                <p class="descripcion">Planes de Pixa Events</p>
+            </li>
+        </ul>
+    </div>
+    <h1 class="titulo-principal">Pixa Events</h1>
 
-       <div class="contenedorInput">
+    <div class="contenedorInput">
         <section class="recuadroTareas">
             <input class="input1" id="espaciosTareas1" type="text" placeholder="Agrega tareas o eventos">
             <input class="input2" id="espaciosTareas2" type="date" placeholder="Fecha">
-            <select name="Seleccione" id="">
+            <select name="Seleccione" id="seleccion">
                 <option value="">Tarea</option>
                 <option value="">Evento</option>
-            </selec>
-            <input class="input3" id="espaciosTareas3" type="time" name="Hora" id="">
+            </select>
+            <input class="input3" id="espaciosTareas3" type="time" name="Hora">
             <button class="botonAgregar" id="botonAgregar">Agregar</button>
-           </section>
-       </div>
-       <hr class="linea-espacio">
-        <div id="input-salida"></div>
+        </section>
+    </div>
+
+    <div class="contenedorInput">
+        <section class="recuadroTareas">
+            <input class="input1" id="espaciosTareasEditar1" type="text" placeholder="Agrega tareas o eventos" style="display: none;">
+            <input class="input2" id="espaciosTareasEditar2" type="date" placeholder="Fecha" style="display: none;">
+            <input class="input3" id="espaciosTareasEditar3" type="time" name="Hora" style="display: none;">
+            <button class="botonAgregar" id="botonEditar" style="display: none;">Editar</button>
+        </section>
+    </div>
+
+    <ul id="listaDeTareas"></ul>
+    <hr class="linea-espacio">
+    <div id="input-salida"></div>
+
     <script src="./Validaciones/index.js"></script>
 </body>
 </html>

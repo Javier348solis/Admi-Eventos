@@ -9,7 +9,8 @@ boton.addEventListener("click", function (e){
     e.preventDefault()
     if (nombre.value === "" || correo.value==="" || contrasena.value==="") {
         alert("Los campos estan vacios")
-    } else {
+        return
+    } else if(!nombre.value === "" || !correo.value==="" || !contrasena.value==="") {
         alert(`Hola ${nombre.value} `)
     }
      let usuario = {

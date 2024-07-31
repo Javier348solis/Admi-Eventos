@@ -8,6 +8,7 @@ const fecha = document.getElementById("espaciosTareas2");
 const hora = document.getElementById("espaciosTareas3");
 const botoncito = document.getElementById("botonAgregar");
 const contenedor = document.getElementById("input-salida");
+const seleccionarET = document.getElementById("seleccion");
 let isOpen = false;
 
 let agregarTareas = JSON.parse(localStorage.getItem("agregarTareas")) || [];
@@ -22,8 +23,9 @@ botoncito.addEventListener("click", () => {
             agregar: agregar.value,
             fecha: fecha.value,
             hora: hora.value,
+            seleccionarET: seleccionarET.value,
         };
-        
+
         // Verificar si la tarea ya existe
         let tareaLista = agregarTareas.find(user =>
             agregar.value === user.agregar ||
@@ -32,20 +34,12 @@ botoncito.addEventListener("click", () => {
         );
 
         if (tareaLista) {
-            alert("La tarea ya existe");
+            alert("La tarea o evento ya existe");
         } else {
             alert("Se agregó satisfactoriamente");
             agregarTareas.push(espaciosTareas);
             localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
-
-            // Actualizar el contenedor con la nueva tarea
-            contenedor.innerHTML = `
-                <p><strong>Tarea o Evento:</strong> ${agregar.value}</p>
-                <p><strong>Fecha:</strong> ${fecha.value}</p>
-                <p><strong>Hora:</strong> ${hora.value}</p>
-                <buttom>Eliminar</buttom>
-            `;
-
+            mostrarTareas();
             // Limpiar los inputs después de agregar la tarea
             agregar.value = "";
             fecha.value = "";
@@ -53,6 +47,99 @@ botoncito.addEventListener("click", () => {
         }
     }
 });
+
+function mostrarTareas() {
+    let listaDeTareas = document.getElementById("listaDeTareas");
+    listaDeTareas.innerHTML = ""; // Limpiar la lista antes de actualizar
+
+    if (agregarTareas.length === 0) {
+        let p = document.createElement("p");
+        p.textContent = "No hay tareas";
+        listaDeTareas.appendChild(p);
+    } else {
+        agregarTareas.forEach((tarea, indice) => {
+            let li = document.createElement("li");
+            let botonEli = document.createElement("button");
+            let botonEdi = document.createElement("button");
+
+            li.textContent = `Tarea o Evento: ${tarea.agregar} Fecha: ${tarea.fecha} Hora: ${tarea.hora}`;
+            botonEdi.textContent = "Editar";
+            botonEli.textContent = "Eliminar";
+
+            botonEdi.classList.add('boton-editar');
+            botonEli.classList.add('boton-eliminar');
+            li.classList.add('lista');
+
+            listaDeTareas.appendChild(li);
+            listaDeTareas.appendChild(botonEli);
+            listaDeTareas.appendChild(botonEdi);
+
+            // Añadir eventos a los botones
+            botonEli.addEventListener("click", function () {
+                eliminarTarea(indice);
+            });
+
+            botonEdi.addEventListener("click", function () {
+                editar(indice);
+            });
+        });
+    }
+}
+
+// Función para eliminar una tarea
+function eliminarTarea(index) {
+    agregarTareas.splice(index, 1);
+    localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
+    mostrarTareas();
+}
+let btnEditar = document.getElementById("botonEditar")
+// Función para mostrar y preparar el formulario de edición
+function editar(index) {
+    let mostrarEditarTitulo = document.getElementById("espaciosTareasEditar1");
+    let mostrarEditarFecha = document.getElementById("espaciosTareasEditar2");
+    let mostrarEditarHora = document.getElementById("espaciosTareasEditar3");
+
+    // Rellenar los campos con los valores actuales
+    mostrarEditarTitulo.value = agregarTareas[index]?.agregar || '';
+    mostrarEditarFecha.value = agregarTareas[index]?.fecha || '';
+    mostrarEditarHora.value = agregarTareas[index]?.hora || '';
+
+    // Mostrar los campos de edición y el botón
+    mostrarEditarTitulo.style.display = "block";
+    mostrarEditarFecha.style.display = "block";
+    mostrarEditarHora.style.display = "block";
+    btnEditar.style.display = "block";
+
+    // Asignar el evento de clic al botón de edición
+    btnEditar.onclick = () => confirmarEdicion(index);
+}
+
+// Función para confirmar y guardar la edición
+function confirmarEdicion(index) {
+    let mostrarEditarTitulo = document.getElementById("espaciosTareasEditar1");
+    let mostrarEditarFecha = document.getElementById("espaciosTareasEditar2");
+    let mostrarEditarHora = document.getElementById("espaciosTareasEditar3");
+
+    let inputEditarTitulo = mostrarEditarTitulo.value;
+    let inputEditarFecha = mostrarEditarFecha.value;
+    let inputEditarHora = mostrarEditarHora.value;
+
+    agregarTareas[index] = {
+        agregar: inputEditarTitulo,
+        fecha: inputEditarFecha,
+        hora: inputEditarHora
+    };
+
+    localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
+
+    // Ocultar los campos de edición y el botón
+    mostrarEditarTitulo.style.display = "none";
+    mostrarEditarFecha.style.display = "none";
+    mostrarEditarHora.style.display = "none";
+    btnEditar.style.display = "none";
+
+    mostrarTareas(); // Volver a mostrar la lista actualizada
+}
 
 // Función que se le dio al botón del navbar, si está abierto, se mantiene verdadero, si está cerrado, falso
 boton.addEventListener("click", () => {
@@ -65,4 +152,5 @@ boton.addEventListener("click", () => {
     }
 });
 
- 
+// Mostrar las tareas al cargar la página
+mostrarTareas();
