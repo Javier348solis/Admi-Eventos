@@ -14,11 +14,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid white;
+    border: 2px solid black;
     width: 400px;
     height: 250px;
     color: red;
-    background-color: rgb(192, 192, 192, 0.6);
+    background-color: rgba(0, 0, 0, 0.382);
 }
 
 .main-backGround input{
@@ -28,7 +28,7 @@
     display: flex;
     margin-top: 15px;
     border: 2px solid red;
-    background-color: transparent;
+   
 }
 
 body{
@@ -39,4 +39,11 @@ body{
     align-items: center;
     justify-content: center;
     margin-top: 200px;
+}
+.login-email{
+    color: white;
+}
+
+.login-contra{
+    color: yello;
 }

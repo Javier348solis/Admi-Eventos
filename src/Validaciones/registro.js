@@ -8,10 +8,20 @@ let usuarioRegistro = JSON.parse(localStorage.getItem("usuarioRegistro")) || []
 boton.addEventListener("click", function (e){
     e.preventDefault()
     if (nombre.value === "" || correo.value==="" || contrasena.value==="") {
-        alert("Los campos estan vacios")
+        Swal.fire({
+            title: '¡Alerta!',
+            text: 'Los campos estan vacios',
+            icon: 'error',
+            timer: 3000
+          });
         return
     } else if(!nombre.value === "" || !correo.value==="" || !contrasena.value==="") {
-        alert(`Hola ${nombre.value} `)
+        Swal.fire({
+            title: '¡Bienvenido!',
+            text: `Hola ${nombre.value} `,
+            icon: 'success',
+            timer: 3000
+          }); 
     }
      let usuario = {
         nombre: nombre.value,
@@ -21,11 +31,21 @@ boton.addEventListener("click", function (e){
 
      let existe = usuarioRegistro.find(user => nombre === user.nombre || correo === user.correo);
             if (existe) {
-                alert("El usuario ya existe")
+                Swal.fire({
+                    title: '¡Alerta!',
+                    text: 'Los campos estan vacios',
+                    icon: 'error',
+                    timer: 3000
+                  });
             }else{
                 usuarioRegistro.push(usuario)
                 localStorage.setItem("usuarioRegistro", JSON.stringify(usuarioRegistro))
-                alert("Usuario registrado con exito ")
+                Swal.fire({
+                    title: '¡Bienvenido!',
+                    text: 'Usuarios registrado con exito',
+                    icon: 'success',
+                    timer: 3000
+                  });
                 window.location.href='Inicio.html'
             }   
         }

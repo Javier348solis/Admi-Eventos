@@ -11,7 +11,7 @@ body{
     justify-content: center;
     border: 2px solid black;
     color: red;
-    background-color: silver;
+    background-color: rgba(0, 0, 0, 0.382);
 }
 .btn-register{
     width: 200px;
@@ -28,4 +28,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.espacioCorreo{
+    color: aqua;
 }

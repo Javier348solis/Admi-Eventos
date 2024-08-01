@@ -16,7 +16,12 @@ let agregarTareas = JSON.parse(localStorage.getItem("agregarTareas")) || [];
 // Función para manejar la adición de tareas
 botoncito.addEventListener("click", () => {
     if (agregar.value === "" || fecha.value === "" || hora.value === "") {
-        alert("No se pueden agregar tareas o eventos vacíos");
+        Swal.fire({
+            title: '¡Alerta!',
+            text: ('No se puede agregar tareas o eventos vacios'),
+            icon: 'error',
+            timer: 3000
+          }); 
     } else {
         // Crear el objeto tarea
         let espaciosTareas = {
@@ -29,14 +34,18 @@ botoncito.addEventListener("click", () => {
         // Verificar si la tarea ya existe
         let tareaLista = agregarTareas.find(user =>
             agregar.value === user.agregar ||
-            fecha.value === user.fecha ||
             hora.value === user.hora
         );
 
         if (tareaLista) {
             alert("La tarea o evento ya existe");
         } else {
-            alert("Se agregó satisfactoriamente");
+            Swal.fire({
+                title: '¡Exito!',
+                text: ('Se agrego satisfactoriamente'),
+                icon: 'success',
+                timer: 3000
+              }); 
             agregarTareas.push(espaciosTareas);
             localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
             mostrarTareas();
@@ -77,6 +86,24 @@ function mostrarTareas() {
             // Añadir eventos a los botones
             botonEli.addEventListener("click", function () {
                 eliminarTarea(indice);
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, bórralo!',
+                    cancelButtonText: 'Cancelar'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        '¡Borrado!',
+                        'Tu archivo ha sido borrado.',
+                        'success'
+                      )
+                    }
+                  });
             });
 
             botonEdi.addEventListener("click", function () {
