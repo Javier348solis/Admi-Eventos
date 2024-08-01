@@ -23,7 +23,7 @@ botoncito.addEventListener("click", () => {
             timer: 3000
           }); 
     } else {
-        // Crear el objeto tarea
+//Se crea una lista de objetos para darle el 'valor' a esos inputs 
         let espaciosTareas = {
             agregar: agregar.value,
             fecha: fecha.value,
@@ -31,7 +31,7 @@ botoncito.addEventListener("click", () => {
             seleccionarET: seleccionarET.value,
         };
 
-        // Verificar si la tarea ya existe
+//Se verifica si la  tarea ya existe o no, esto para evitar que se agregue las mismas tareas mas de una vez
         let tareaLista = agregarTareas.find(user =>
             agregar.value === user.agregar ||
             hora.value === user.hora
@@ -40,12 +40,14 @@ botoncito.addEventListener("click", () => {
         if (tareaLista) {
             alert("La tarea o evento ya existe");
         } else {
+            //Si no se cumple, se agregaa la tarea con un alert de agregado con exito
             Swal.fire({
                 title: '¡Exito!',
                 text: ('Se agrego satisfactoriamente'),
                 icon: 'success',
                 timer: 3000
               }); 
+              //Utilizamos el metodo push para que las tareas se vean reflejadas en el localstorage
             agregarTareas.push(espaciosTareas);
             localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
             mostrarTareas();
@@ -56,36 +58,39 @@ botoncito.addEventListener("click", () => {
         }
     }
 });
-
+//Creamos una funcion para mostrar las tareas en la pagina, creamos unas etiquetas de parrafo y botones, donde le damos las funciones de funcionalidad a cada uno 
 function mostrarTareas() {
     let listaDeTareas = document.getElementById("listaDeTareas");
-    listaDeTareas.innerHTML = ""; // Limpiar la lista antes de actualizar
+    listaDeTareas.innerHTML = ""; 
 
     if (agregarTareas.length === 0) {
         let p = document.createElement("p");
         p.textContent = "No hay tareas";
         listaDeTareas.appendChild(p);
     } else {
+        //Utilizamos una funcion foreacch para que itere sobre cada una de mis etiquetas, y luego ejecute
         agregarTareas.forEach((tarea, indice) => {
             let li = document.createElement("li");
             let botonEli = document.createElement("button");
             let botonEdi = document.createElement("button");
 
+    //Agregamos lo que queremos de texto o se quiere mostrar en la pagina 
             li.textContent = `Tarea o Evento: ${tarea.agregar} Fecha: ${tarea.fecha} Hora: ${tarea.hora}`;
             botonEdi.textContent = "Editar";
             botonEli.textContent = "Eliminar";
 
+            //Se define la clase a cada uno de los botones para darle estilos 
             botonEdi.classList.add('boton-editar');
             botonEli.classList.add('boton-eliminar');
             li.classList.add('lista');
 
+    //Utilizamos un appenchild para que el contenedor padre contenga un contenedor hijo y asi se muestre lo que se quiere ver en la pagina
             listaDeTareas.appendChild(li);
             listaDeTareas.appendChild(botonEli);
             listaDeTareas.appendChild(botonEdi);
 
-            // Añadir eventos a los botones
+    //Creamos la funcion de boton eliminar con su respectiva alerta
             botonEli.addEventListener("click", function () {
-                eliminarTarea(indice);
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: "¡No podrás revertir esto!",
@@ -97,6 +102,7 @@ function mostrarTareas() {
                     cancelButtonText: 'Cancelar'
                   }).then((result) => {
                     if (result.isConfirmed) {
+                    eliminarTarea(indice);
                       Swal.fire(
                         '¡Borrado!',
                         'Tu archivo ha sido borrado.',
@@ -104,8 +110,9 @@ function mostrarTareas() {
                       )
                     }
                   });
+             
             });
-
+    //Creamos una funcion para el boton editar
             botonEdi.addEventListener("click", function () {
                 editar(indice);
             });
@@ -113,35 +120,35 @@ function mostrarTareas() {
     }
 }
 
-// Función para eliminar una tarea
+//Se crea una funcion que recorra el index desde la pocision numero uno y asi se ejecute la fncion de eliminar
 function eliminarTarea(index) {
     agregarTareas.splice(index, 1);
     localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
     mostrarTareas();
 }
 let btnEditar = document.getElementById("botonEditar")
-// Función para mostrar y preparar el formulario de edición
+//Se utiliza la funcion para mostrar el formulario que se quiere usar en editar
 function editar(index) {
     let mostrarEditarTitulo = document.getElementById("espaciosTareasEditar1");
     let mostrarEditarFecha = document.getElementById("espaciosTareasEditar2");
     let mostrarEditarHora = document.getElementById("espaciosTareasEditar3");
 
-    // Rellenar los campos con los valores actuales
+
     mostrarEditarTitulo.value = agregarTareas[index]?.agregar || '';
     mostrarEditarFecha.value = agregarTareas[index]?.fecha || '';
     mostrarEditarHora.value = agregarTareas[index]?.hora || '';
 
-    // Mostrar los campos de edición y el botón
+    //Se mostrara los campos de edicion y los botones correspondientes
     mostrarEditarTitulo.style.display = "block";
     mostrarEditarFecha.style.display = "block";
     mostrarEditarHora.style.display = "block";
     btnEditar.style.display = "block";
 
-    // Asignar el evento de clic al botón de edición
+    //Se le da la funcion al boton editar
     btnEditar.onclick = () => confirmarEdicion(index);
 }
 
-// Función para confirmar y guardar la edición
+//Se ocnfirma y se guarda los cambios que se hicieron por medio del formulario editar 
 function confirmarEdicion(index) {
     let mostrarEditarTitulo = document.getElementById("espaciosTareasEditar1");
     let mostrarEditarFecha = document.getElementById("espaciosTareasEditar2");
@@ -159,13 +166,13 @@ function confirmarEdicion(index) {
 
     localStorage.setItem("agregarTareas", JSON.stringify(agregarTareas));
 
-    // Ocultar los campos de edición y el botón
+    //Se da una validacion para que se oculte los campos de editar tareas o eventos 
     mostrarEditarTitulo.style.display = "none";
     mostrarEditarFecha.style.display = "none";
     mostrarEditarHora.style.display = "none";
     btnEditar.style.display = "none";
 
-    mostrarTareas(); // Volver a mostrar la lista actualizada
+    mostrarTareas(); //Se actualiza la lista de tareas desde el localstorage 
 }
 
 // Función que se le dio al botón del navbar, si está abierto, se mantiene verdadero, si está cerrado, falso
@@ -179,5 +186,5 @@ boton.addEventListener("click", () => {
     }
 });
 
-// Mostrar las tareas al cargar la página
+//Se mostraran las tareas al uno cargar la pagina
 mostrarTareas();

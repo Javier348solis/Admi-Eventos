@@ -19,7 +19,12 @@ botoncito.addEventListener("click", () => {
     window.location.href = "index.html";
   } else {
     // Si no se encontró el usuario, mostramos el mensaje de alerta
-    swal("Usuario no encontrado.");
+    Swal.fire({
+      title: '¡Alerta!',
+      text: 'Usuario no encontrado',
+      icon: 'error',
+      timer: 3000
+    });
   }
   
     }    
