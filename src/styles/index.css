@@ -1,5 +1,5 @@
 body{
-    background-color: #7d7a7a;
+    background-color: #ccc;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -75,7 +75,9 @@ nav{
     padding: 15px;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: rgb(7, 46, 94);
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 1px;
 }
 .contenedorInput{
     display: flex;
@@ -85,8 +87,19 @@ input{
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border: 3px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255, 0.4);
 } 
+input::placeholder{
+    color: white;
+}
+#seleccion{
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255, 0.4);
+    border: 2px solid black;
+    color: #ccc;
+}
 .linea-espacio{
     border: solid 2px white;
 }
@@ -107,4 +120,14 @@ input{
     border: 2px solid yellowgreen;
     padding: 30px;
     margin-bottom: 10px;
+}
+.botonAgregar{
+    border-radius: 5px;
+    background-color: rgb(33, 136, 33);
+}
+.input2{
+    color: #ccc;
+}
+.input3{
+    color: #ccc;
 }
