@@ -1,0 +1,13 @@
+body{
+    background: linear-gradient(to right, blue, yellow, blue);
+}
+.texto{
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+}

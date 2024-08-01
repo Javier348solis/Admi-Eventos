@@ -92,14 +92,14 @@ input{
 }
 .boton-editar{
     height: 30px;
-    width: 30px;
+    width: 70px;
     background-color: green;
     padding: 10px;
     margin-left: 30px;
 }
 .boton-eliminar{
     height: 30px;
-    width: 60px;
+    width: 70px;
     background-color: red;
     padding: 10px;
 }
